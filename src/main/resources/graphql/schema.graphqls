@@ -1,0 +1,76 @@
+type Query {
+    bookId(id: ID): Book
+    authorById(id: ID): Author
+    allBooks: [Book]
+}
+
+type Mutation {
+    createBook(input: BookInput): Book
+    updateBook(id: ID, input: BookInput): Book
+    deleteBook(id: ID): Boolean
+    createAuthor(input: AuthorInput): Author
+    updateAuthor(id: ID, input: AuthorInput): Author
+    deleteAuthor(id: ID): Boolean
+    createPublisher(input: PublisherInput): Publisher
+    updatePublisher(id: ID, input: PublisherInput): Publisher
+    deletePublisher(id: ID): Boolean
+    createAddress(input: AddressInput): Address
+    updateAddress(id: ID, input: AddressInput): Address
+    deleteAddress(id: ID): Boolean
+}
+
+input BookInput {
+    name: String
+    pageCount: Int
+    authorId: ID
+    publisherId: ID
+}
+
+input AuthorInput {
+    name: String
+    lastName: String
+}
+
+input PublisherInput {
+    name: String
+    since: String
+    addressId: ID
+}
+
+input AddressInput {
+    number: Int
+    street: String
+    city: String
+    country: String
+    postalCode: Int
+}
+
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+    publisher: Publisher
+}
+
+type Author{
+    id: ID
+    name: String
+    lastName: String
+}
+
+type Publisher{
+    id: ID
+    name: String
+    since: String
+    address: Address
+}
+
+type Address {
+    id: ID
+    number: Int
+    street: String
+    city: String
+    country: String
+    postalCode: Int
+}
